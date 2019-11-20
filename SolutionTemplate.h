@@ -256,7 +256,32 @@ public:
 		return l;
 	}
 
-
+	void quicksort(int* a, int l, int r)
+	{
+		if (!a || l > r)
+			return;
+		int i = l, j = r, key = a[1];
+		while (i<j)
+		{
+			for (; i<j&&a[j] >= key; j--)
+				;
+			if (i < j)
+			{
+				a[i] = a[j];
+				i++;
+			}
+			for (; i < j && a[i] >= key; i++)
+				;
+			if (i < j)
+			{
+				a[j] = a[i];
+				j--;
+			}
+		}
+		a[i] = key;
+		quicksort(a, l, i - 1);
+		quicksort(a, i + 1, r);
+	}
 };
 
 #endif // !SOLUTIONTEMPLATE_H_
