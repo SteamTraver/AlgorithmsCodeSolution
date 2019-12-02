@@ -42,28 +42,6 @@ void outputlist(ListNode* head)
 	}
 }
 
-// test examples 
-
-//SNode s0 = SNode(0);
-//SNode s1 = SNode(1);
-//SNode s2 = SNode(2);
-//SNode s3 = SNode(3);
-//SNode s4 = SNode(4);
-//SNode s5 = SNode(5);
-//SNode s6 = SNode(6);
-//SNode s7 = SNode(7);
-//
-//s0.next = &s1;
-//s1.next = &s2;
-//s2.next = &s3;
-//s3.next = &s4;
-//s4.next = &s5;
-//s5.next = &s6;
-//s6.next = &s7;
-//
-
-////////////////////////////////////////////////////////////////
-
 class Solution {
 public:
 	// solu 1
@@ -223,7 +201,7 @@ public:
 		}
 		else
 		{
-			return (double(v[s / 2]) + double(v[s / 2 - 1])) / 2;
+			return (double(v[s / 2]) + double(v[s/2 /*-1*/ ])) / 2;//may wrong
 		}
 	}
 	// solu 4
@@ -281,6 +259,12 @@ public:
 		a[i] = key;
 		quicksort(a, l, i - 1);
 		quicksort(a, i + 1, r);
+	}
+
+	//solu 25 -- K个一组翻转链表
+
+	ListNode* reverseKGroup(ListNode* head, int k) {
+
 	}
 };
 

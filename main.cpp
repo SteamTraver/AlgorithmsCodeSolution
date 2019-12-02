@@ -1,28 +1,27 @@
 #include"SolutionTemplate.h"
 
-template<typename T = char,size_t size>
-size_t sizeofarray(T(&a)[size])
-{
-	return size;
-}
-
 int main()
 {
 	Solution S;
 
-	/*vector<int> v1 = {1};
-	vector<int> v2 = {};
+	ListNode s1 = ListNode(1);
+	ListNode s2 = ListNode(2);
+	ListNode s3 = ListNode(3);
+	ListNode s4 = ListNode(4);
+	ListNode s5 = ListNode(5);
+	ListNode s6 = ListNode(6);
+	ListNode s7 = ListNode(7);
 
-	cout << "median number of two vectors : " << S.findMedianSortedArrays(v1, v2);*/
+	s1.next = &s2;
+	s2.next = &s3;
+	s3.next = &s4;
+	s4.next = &s5;
+	s5.next = &s6;
+	s6.next = &s7;
 
-	int test[] = { 1,74,14,15,10,9,78,42,31,56,20,19,30 };
-	S.quicksort(test, 0, 12);
-
-	cout << "after sorted.\n";
-	for (int i = 0; i < 13; i++)
-	{
-		cout << test[i] << "\t";
-	}
+	ListNode* head = &s1;
+	cout << "Before reversed with K group: \n";
+	outputlist(head);
 	cout << endl;
 
 	return 0;
