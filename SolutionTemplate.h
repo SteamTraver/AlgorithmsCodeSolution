@@ -234,6 +234,8 @@ public:
 		return l;
 	}
 
+
+
 	void quicksort(int* a, int l, int r)
 	{
 		if (!a || l > r)
@@ -261,11 +263,174 @@ public:
 		quicksort(a, i + 1, r);
 	}
 
-	//solu 25 -- K个一组翻转链表
+	// solu 20 -- 有效的括号
 
-	ListNode* reverseKGroup(ListNode* head, int k) {
+	bool isValid(string s) {
 
 	}
+
+	// solu 24 -- 两两交换节点
+	ListNode* swapPairs(ListNode* head) {
+		//判空操作
+		if (!head)
+			return NULL;
+		//链表只有一个节点
+		if (!head->next)
+			return head;
+		//链表节点大于等于2
+
+		ListNode* prev = head;
+		ListNode* curr = head;
+		ListNode* next = NULL;
+
+		ListNode* lp = prev;
+		ListNode* lr = prev;
+		bool set = false;
+		//结果
+		for (int i = 1;; i++)
+		{
+			if (!curr)
+				break;
+			if (!(i % 2))
+			{
+				(i == 2) ? head->next = NULL,head = curr:NULL;
+				lr->next = curr;
+				next = curr->next;
+				curr->next = prev;
+				curr = next;
+				if(i==2)
+					lp->next = next;
+				else
+				{
+					lp = prev;
+					lp->next = curr;
+					lr = lr->next;
+				}
+				set = true;
+			}
+			if (set)
+			{
+				std::swap(lr, lp);
+				prev = curr;
+				set = false;
+				continue;
+			}
+			if(curr)
+				curr = curr->next;
+			else
+			{
+				break;
+			}
+		}
+		return head;
+	}
+	//solu 25 -- K个一组翻转链表
+
+	ListNode* reverseKGroup(ListNode* head, int k)
+	{
+		//判空操作
+		if (!head)
+			return NULL;
+		//假设原始链表只有一个节点、或者K = 0，则返回原始链表。
+		if (!head->next || !k || k == 1)
+			return head;
+		//当K大于节点个数时：返回空
+		int count = 0;
+		ListNode* p = head;
+		for (; p; p = p->next)
+			count++;
+		if (k > count)
+			return head;
+		//当链表节点数目大于等于2、K值为[1,n](n为链表长度)时。即进入以下操作。
+
+		ListNode* l = head;
+		ListNode* m = head;
+		ListNode* r = NULL;
+		ListNode* b = NULL;
+		ListNode* res = NULL;
+		ListNode* link = NULL;
+		ListNode* prev = l;
+
+		bool set = false;
+		for (int i = 1;; ++i)
+		{
+			//遍历到第K个节点时
+			if (i >= k && !(i % k))
+			{
+				r = m->next;
+				//取第一次遍历到的m为翻转之后的起始节点
+				if (i == k)
+					res = m;
+				else
+				{
+					prev->next = m;
+					prev = m;
+				}
+				//第n次，n大于1
+
+				//重新移动m到需要翻转的第二个节点上
+
+				m = l->next;
+				link = l;
+				link->next = r;
+				std::swap(link, prev);
+
+				//遍历-实现节点翻转
+				while (true)
+				{
+					b = m->next;
+					m->next = l;
+					l = m;
+					m = b;
+					if (m == r)
+					{
+						set = true;
+						break;
+					}
+				}
+				l = m;
+			}
+			if (!m || !m->next)
+				break;
+			if (set)
+			{
+				set = false;
+				continue;
+			}
+			m = m->next;
+		}
+		return res;
+
+		//1、m的步进
+		//2、端点end的连接
+
+	}
+	//翻转一个链表
+
+	ListNode* reverseList(ListNode* head)
+	{
+		if (!head)
+			return NULL;
+		if (!head->next)
+			return head;
+
+		ListNode* prev = head;
+		ListNode* curr = prev->next;
+		ListNode* next = NULL;
+
+		while (curr)
+		{
+			next = curr->next;
+			curr->next = prev;
+			prev = curr;
+			curr = next;
+			//if (j == NULL)
+			//	break;
+		}
+		head->next = NULL;
+		return prev;
+	}
+
 };
 
 #endif // !SOLUTIONTEMPLATE_H_
