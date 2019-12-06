@@ -37,9 +37,13 @@ int main()
 
 
 
-	string str = "LEETCODEISHIRING";
-	string res = S.convert(str, 4);
+	//string str = "LEETCODEISHIRING";
+	//string res = S.convert(str, 4);
 
-	cout << res;
+	string tr = "()()[]{}{{))";
+	bool vaild = S.isValid(tr);
+	cout << ((vaild) ? "\nVAILD" : "\nUNVAILD") << endl;
+
+
 	return 0;
 }

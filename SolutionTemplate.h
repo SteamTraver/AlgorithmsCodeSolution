@@ -6,6 +6,8 @@
 #include<string>
 #include<vector>
 #include<algorithm>
+#include<stack>
+
 
 using std::cin;
 using std::string;
@@ -340,7 +342,56 @@ public:
 	// solu 20 -- 有效的括号
 
 	bool isValid(string s) {
+		
+		size_t size = s.size();
+		if (!size)
+			return true;
+		//直接排除长度为奇数的括号字符串
+		if (size % 2 == 1)
+			return false;
+		//长度为2也快速返回
 
+		bool valid = true;
+
+		
+		//类栈数组 -- 初始化
+		char* char_arr = new char[size+1];
+		for (int i = 0; i < size; i++)
+			char_arr[i] = '\0';
+
+		// 按照原字符串进行配置
+		for (int t = 0,i = 0,j = i + 1; t < size; t++)
+		{
+			if (char_arr[i] == '\0')
+				char_arr[i] = s[t];
+			else
+			{
+				if (char_arr[i] == '(' && s[t] == ')' ||
+					char_arr[i] == '[' && s[t] == ']' ||
+					char_arr[i] == '{' && s[t] == '}')
+				{
+					char_arr[i] = '\0';
+					(i > 0) ? (j = i, i--) : 0;
+				}
+				else
+				{
+					char_arr[j] = s[t];
+					i = j;
+					j++;
+				}
+			}
+		}
+		// 最后的返回结果
+		for (int i = 0; i < size; i++)
+		{
+			if (char_arr[i] != '\0')
+			{
+				valid = false;
+				break;
+			}
+		}
+
+		return valid;
 	}
 
 	// solu 24 -- 两两交换节点
