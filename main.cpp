@@ -47,7 +47,7 @@ int main()
 	//}
 	//cout << endl;
 
-	vector<int> test = { 1,3,-1,-3,5,3,6,7 };
+	vector<int> test = {-7,-8,7,5,7,1,6,0};
 	int k = 4;
 	vector<int> res = S.maxSlidingWindow(test, k);
 	for (int& g : res)

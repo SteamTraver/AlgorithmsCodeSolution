@@ -700,11 +700,11 @@ public:
 	}
 	*/
 
-	// 第三种方法:时间复杂度超过32%的提交
+	// 第三种方法:时间复杂度超过100%的提交
 		// 内存消耗小于92%的提交。
 
 		// vector为空亦或k<0，返回一个空vector。
-		/*
+		
 		if (!nums.size() || k < 0)
 			return vector<int>(0);
 
@@ -730,15 +730,13 @@ public:
 			// 需要调试
 			if (!i||i>tag)
 			{
-				int temp = 0;
-
-				for (int ite = i; ite <= j; ite++)
+				for (int ite = i+1,k = i; ite <= j; ite++)
 				{
-					if (nums[ite] > temp)
+					if (nums[ite] > nums[k])
 					{
-						temp = nums[ite];
-						tag = ite;
+						k = ite;
 					}
+					tag = k;
 				}
 				// 找到第一次/后面的不知道第几次的最大值的下标为ite
 				result.push_back(nums[tag]);
@@ -767,28 +765,7 @@ public:
 		}
 
 		return result;
-		*/
-
-	// 第四种方法：
-
-		// vector为空亦或k<0，返回一个空vector。
-		if (!nums.size() || k < 0)
-			return vector<int>(0);
-
-		// k==1 时。返回原vector
-		if (k == 1)
-		{
-			return nums;
-		}
-		// k==nums.size()时,返回整个vector的最大值。
-		if (k == nums.size())
-		{
-			auto res = std::max_element(nums.begin(), nums.end());
-			return vector<int>(1, *res);
-		}
-
-		// 其他情况
-
+		
 	}
 
 };
