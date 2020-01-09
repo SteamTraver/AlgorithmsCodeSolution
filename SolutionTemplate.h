@@ -7,14 +7,18 @@
 #include<vector>
 #include<algorithm>
 #include<stack>
-
+#include<queue>
+#include<deque>
+#include<array>
 
 using std::cin;
 using std::string;
 using std::cout;
 using std::endl;
 using std::vector;
-
+using std::queue;
+using std::deque;
+using std::array;
 // related defination: -- 相关结构的定义
 struct SNode
 {
@@ -115,13 +119,13 @@ public:
 		{
 			return (s.empty()) ? 0 : 1;
 		}
-		int n = s.length(), ans = 0;
-		int* index = new int[128];
+		size_t n = s.length(), ans = 0;
+		size_t* index = new size_t[128];
 
 		for (int i = 0; i < 128; i++)
 			index[i] = 0;
 
-		for (int j = 0, i = 0; j < n; j++) {
+		for (size_t j = 0, i = 0; j < n; j++) {
 			// i的更新过程：
 			// 只有当前字符不重复且上一次也不重复时，i一直是0。
 			// 假如重复，返回flag值;
@@ -554,6 +558,237 @@ public:
 		}
 		head->next = NULL;
 		return prev;
+	}
+
+	//solu 739 
+	// 这道题目的解答不能使用循环，当vector内部的数据太多时（例如3000）
+	// 就会超出时间限制。故此，应当采用其他的方式：stack或者使用数组模拟stack。
+	vector<int> dailyTemperatures(vector<int>& T) {
+		if (T.size() == 1)
+		{
+			return vector<int>(1,0);
+		}
+		// 新建两个数组：temp用来存储结果数据，arr用来模拟栈。
+		int* temp = new int[T.size()];
+		for (int i = 0; i < T.size(); i++)
+			temp[i] = 0;
+		int* arr = new int[T.size()];
+
+		// 先将arr的第一个值设置为0
+		arr[0] = 0; 
+		int flag = 0;
+		// 对原vector进行遍历
+		for (int i = 1, j = 0; (i < T.size() && j < T.size()); i++)
+		{
+			if (T[i] > T[arr[j]])
+			{
+				temp[i - 1] = i - arr[j];
+				arr[j] = i;
+				// 循环需要设置
+				flag = j - 1;
+				while (flag>=0&&T[arr[j]]>T[arr[flag]])
+				{
+					temp[arr[flag]] = arr[j] - arr[flag];
+					arr[flag] = i;
+					j = flag;
+					flag--;
+				}
+			}
+			else
+			{
+				arr[++j] = i;
+			}
+		}
+		vector<int> resvec;
+		for (int i = 0; i < T.size(); i++)
+		{
+			resvec.push_back(temp[i]);
+		}
+		delete []arr;
+		delete[] temp;
+		return resvec;
+	}
+
+	//solu 239
+	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+	// 下面是使用容器的解法，效率不高
+
+		/*
+		// vector为空亦或k<0，返回一个空vector。
+		if (!nums.size() || k < 0)
+			return vector<int>(0);
+
+		// k==1 时。返回原vector
+		if (k == 1)
+		{
+			return nums;
+		}
+
+		// k==nums.size()时,返回整个vector的最大值。
+		if (k == nums.size())
+		{
+			auto res =  std::max_element(nums.begin(),nums.end());
+			return vector<int>(1, *res);
+		}
+		// 使用一个deque来容纳数据。
+		deque<int> window;
+		// 第一种解法，使用deque.
+		// 通过k值来构造队列数据
+		// 使用一个vector来返回数据
+		vector<int>result;
+		for (int i = 0; i < k; i++)
+		{
+			window.push_back(nums[i]);
+		}
+		result.push_back(*std::max_element(window.begin(), window.end()));
+		// 使用队列来模拟双端队列。
+		// 编写针对这种队列求最大值的算法。
+		// 对剩下的数据进行遍历
+		int loop_times = nums.size() - k;
+		for (int i = 0; i < loop_times; i++)
+		{
+			// push进新的元素
+			window.push_back(nums[i + k]);
+			// pop 掉尾端
+			window.pop_front();
+			// 数据操作结束之后，求每次获得的最大值
+			result.push_back(*std::max_element(window.begin(), window.end()));
+		}
+		return result;
+		*/
+
+		/*
+		// 下面的方法，时间复杂度仍然很高，因为做了许多重复的比较。
+		// 不需要使用数组来代替容器实现压入-弹出过程。
+		// 直接使用两个移动的指针/下标 标志出窗口的左右两界即可。
+		// 再借助比较函数来获取两界之间的最大值。
+		// 比较大小的函数--借用std::max()。
+
+
+		// vector为空亦或k<0，返回一个空vector。
+		if (!nums.size() || k < 0)
+			return vector<int>(0);
+
+		// k==1 时。返回原vector
+		if (k == 1)
+		{
+			return nums;
+		}
+		// k==nums.size()时,返回整个vector的最大值。
+		if (k == nums.size())
+		{
+			auto res = std::max_element(nums.begin(), nums.end());
+			return vector<int>(1, *res);
+		}
+
+		// 其他情况
+		vector<int> result;
+		int delta = k - 1;
+		// 循环，获取相应的边界值。
+		for (int i = 0; i < nums.size() - delta; i++)
+		{
+			int j = i + delta;
+			int temp = 0;
+			for (int ite = i; ite <= j; ite++)
+			{
+				if (nums[ite] > temp)
+					temp = nums[ite];
+			}
+			result.push_back(temp);
+		}
+		return result;
+	}
+	*/
+
+	// 第三种方法:时间复杂度超过32%的提交
+		// 内存消耗小于92%的提交。
+
+		// vector为空亦或k<0，返回一个空vector。
+		/*
+		if (!nums.size() || k < 0)
+			return vector<int>(0);
+
+		// k==1 时。返回原vector
+		if (k == 1)
+		{
+			return nums;
+		}
+		// k==nums.size()时,返回整个vector的最大值。
+		if (k == nums.size())
+		{
+			auto res = std::max_element(nums.begin(), nums.end());
+			return vector<int>(1, *res);
+		}
+		vector<int> result;
+		int delta = k - 1;
+		int tag = 0;
+
+		for (int i = 0; i <= nums.size() - k; i++)
+		{
+			int j = i + delta;
+			//刚开始进入循环时
+			// 需要调试
+			if (!i||i>tag)
+			{
+				int temp = 0;
+
+				for (int ite = i; ite <= j; ite++)
+				{
+					if (nums[ite] > temp)
+					{
+						temp = nums[ite];
+						tag = ite;
+					}
+				}
+				// 找到第一次/后面的不知道第几次的最大值的下标为ite
+				result.push_back(nums[tag]);
+				continue;// 结束后面的循环，直接进入下一个比较。
+			}
+			// 后面的处理步骤
+			// 未越界的情况下
+			if (i<=tag)
+			{
+				// 新来的小于老大
+				if (nums[j] < nums[tag])
+				{
+					result.push_back(nums[tag]);//老大再进去
+					continue;
+				}
+				// 新来的大于老大
+				else
+				{
+					result.push_back(nums[j]);
+					//重置tag
+					tag = j;
+				}
+
+			}
+			
+		}
+
+		return result;
+		*/
+
+	// 第四种方法：
+
+		// vector为空亦或k<0，返回一个空vector。
+		if (!nums.size() || k < 0)
+			return vector<int>(0);
+
+		// k==1 时。返回原vector
+		if (k == 1)
+		{
+			return nums;
+		}
+		// k==nums.size()时,返回整个vector的最大值。
+		if (k == nums.size())
+		{
+			auto res = std::max_element(nums.begin(), nums.end());
+			return vector<int>(1, *res);
+		}
+
+		// 其他情况
+
 	}
 
 };

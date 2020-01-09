@@ -37,13 +37,24 @@ int main()
 
 
 
-	//string str = "LEETCODEISHIRING";
-	//string res = S.convert(str, 4);
+	//vector<int> temprary = { 55,38,53,81,61,93,97,32,43,78};
+	//
+	//vector<int> res = S.dailyTemperatures(temprary);
+	//cout << "Result is : \n";
+	//for (int& t : res)
+	//{
+	//	cout << t << " ";
+	//}
+	//cout << endl;
 
-	string tr = "()()[]{}{{))";
-	bool vaild = S.isValid(tr);
-	cout << ((vaild) ? "\nVAILD" : "\nUNVAILD") << endl;
-
+	vector<int> test = { 1,3,-1,-3,5,3,6,7 };
+	int k = 4;
+	vector<int> res = S.maxSlidingWindow(test, k);
+	for (int& g : res)
+	{
+		cout << g << " ";
+	}
+	cout << endl;
 
 	return 0;
 }
