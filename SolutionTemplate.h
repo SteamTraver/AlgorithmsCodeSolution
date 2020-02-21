@@ -48,6 +48,16 @@ void outputlist(ListNode* head)
 	}
 }
 
+// 二叉搜索树的定义：
+
+struct TreeNode
+{
+	int val;
+	TreeNode* left;
+	TreeNode* right;
+	TreeNode(int x) :val(x), left(NULL), right(NULL) {}
+};
+
 class Solution {
 public:
 	// solu 1
@@ -609,6 +619,20 @@ public:
 		return resvec;
 	}
 
+	//solu 230
+	int kthSmallest(TreeNode* root, int k) {
+		// 对该二叉搜索树进行中序遍历，第K个元素即是第K个最小的元素。
+
+		// 首先对输入进行有效性判断。
+		if (!root || k < 0)
+		{
+			return EXIT_SUCCESS;
+		}
+		// 输入有效，进行中序遍历(Inorder Traversal)
+
+		
+	}
+	
 	//solu 239
 	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
 	// 下面是使用容器的解法，效率不高
@@ -767,6 +791,7 @@ public:
 		return result;
 		
 	}
+
 
 };
 
