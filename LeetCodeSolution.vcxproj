@@ -126,7 +126,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Questions.txt" />
+    <Text Include="Questiones.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SolutionTemplate.h" />
