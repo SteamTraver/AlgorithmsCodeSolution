@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SOLUTIONTEMPLATE_H_
-#define SOLUTIONTEMPLATE_H_
+#ifndef LEETCODESOLUTION_H_
+#define LEETCODESOLUTION_H_
 
 #include<iostream>
 #include<string>
@@ -795,4 +795,4 @@ public:
 
 };
 
-#endif // !SOLUTIONTEMPLATE_H_
+#endif // !LEETCODESOLUTION_H_

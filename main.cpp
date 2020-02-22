@@ -1,4 +1,5 @@
-#include"SolutionTemplate.h"
+#include"LeetCodeSolution.h"
+//#include"Lint"
 
 int main()
 {
@@ -36,7 +37,6 @@ int main()
 	//outputlist(S.swapPairs(head));
 
 
-
 	//vector<int> temprary = { 55,38,53,81,61,93,97,32,43,78};
 	//
 	//vector<int> res = S.dailyTemperatures(temprary);
@@ -55,6 +55,8 @@ int main()
 		cout << g << " ";
 	}
 	cout << endl;
+
+	// slash the code 
 
 	return 0;
 }
