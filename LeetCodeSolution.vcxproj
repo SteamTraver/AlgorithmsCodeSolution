@@ -126,12 +126,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\LintCodeSolution\LintCodeQuestiones.txt" />
     <Text Include="LeetCodeQuestiones.txt" />
+    <Text Include="LintCodeQuestiones.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\LintCodeSolution\LintCodeSolution.h" />
-    <ClInclude Include="LeetCodeSolution.h" />
+    <ClInclude Include="Leet.h" />
+    <ClInclude Include="Lint.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image.jpg" />

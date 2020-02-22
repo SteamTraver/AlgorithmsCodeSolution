@@ -1,6 +1,6 @@
 #pragma once
-#ifndef LEETCODESOLUTION_H_
-#define LEETCODESOLUTION_H_
+#ifndef LEET_H_
+#define LEET_H_
 
 #include<iostream>
 #include<string>
@@ -58,7 +58,7 @@ struct TreeNode
 	TreeNode(int x) :val(x), left(NULL), right(NULL) {}
 };
 
-class Solution {
+class LeetSolution {
 public:
 	// solu 1
 	// 先对两个链表执行判空操作
@@ -795,4 +795,4 @@ public:
 
 };
 
-#endif // !LEETCODESOLUTION_H_
+#endif // !LEET_H_

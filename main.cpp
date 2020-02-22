@@ -1,9 +1,12 @@
-#include"LeetCodeSolution.h"
-//#include"Lint"
+#include"Leet.h"
+#include"Lint.h"
+
+
+//#include""
 
 int main()
 {
-	Solution S;
+	LeetSolution S;
 
 	/*ListNode s1 = ListNode(1);
 	ListNode s2 = ListNode(2);

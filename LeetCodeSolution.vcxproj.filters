@@ -28,15 +28,15 @@
     <Text Include="LeetCodeQuestiones.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\LintCodeSolution\LintCodeQuestiones.txt">
+    <Text Include="LintCodeQuestiones.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LeetCodeSolution.h">
+    <ClInclude Include="Lint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\LintCodeSolution\LintCodeSolution.h">
+    <ClInclude Include="Leet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
