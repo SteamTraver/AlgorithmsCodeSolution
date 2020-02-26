@@ -28,12 +28,28 @@ using std::bitset;
 
 class LintSolution {
 public:
+
+#pragma region 1004
+	// 1004 -- 最大平均值和的分组
+	double largestSumOfAverages(vector<int>& A, int k)
+	{
+		if (k == 1&&!A.empty())
+		{
+			return (std::accumulate(A.begin(), A.end(),0) / A.size());
+		}
+
+	}
+#pragma endregion
+
+#pragma region 1217
+
 	// 1217 -- 总汉明距离
 	int totalHammingDistance(vector<int>& nums)
 	{
 		// nums 为空
 		if (!nums.size())
 			return 0;
+
 		// 解题思路:
 		// 一开始是这样想的：枚举出一个vector中的所有二元组，然后依次计算其距离。想办法进行缓存之前计算过的每组计算过的。
 		// 这样及其容易出错。真正的解法，再看了参考之后给出：
@@ -53,6 +69,8 @@ public:
 		// 代码中最重要的是" count1 += (v >> i) & 1 "这一行。>>是右移运算。把数v右移，然后左边补0，然后返回其移位后的拷贝值 r。
 		// &是 与 运算。代码里让 r 和 1(0000 0001) 进行位与运算。只有当r的最右位是1时，与1的&运算才能得到结果1，否则是零。
 		// i控制每次移位的位数。v则每次移动i位。需要注意的是，v进行移位运算之后，v的值并没有改变——即每次v的移动，都是重新开始，而不是在上一次右移的基础上再次右移i位。 
+
+
 		int sum = 0;
 		auto size = nums.size();
 		for (int i = 0; i < 32; i++)
@@ -67,6 +85,9 @@ public:
 		}
 		return sum;
 	}
+#pragma endregion
+
+
 };
 #endif // !LINT_H_
 

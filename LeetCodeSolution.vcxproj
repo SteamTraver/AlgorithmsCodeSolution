@@ -130,6 +130,7 @@
     <Text Include="LintCodeQuestiones.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlgorithmsTemplate.h" />
     <ClInclude Include="Leet.h" />
     <ClInclude Include="Lint.h" />
   </ItemGroup>

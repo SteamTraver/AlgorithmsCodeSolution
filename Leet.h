@@ -570,13 +570,14 @@ public:
 		return prev;
 	}
 
+#pragma region Unsolved
 	//solu 739 
-	// 这道题目的解答不能使用循环，当vector内部的数据太多时（例如3000）
-	// 就会超出时间限制。故此，应当采用其他的方式：stack或者使用数组模拟stack。
+// 这道题目的解答不能使用循环，当vector内部的数据太多时（例如3000）
+// 就会超出时间限制。故此，应当采用其他的方式：stack或者使用数组模拟stack。
 	vector<int> dailyTemperatures(vector<int>& T) {
 		if (T.size() == 1)
 		{
-			return vector<int>(1,0);
+			return vector<int>(1, 0);
 		}
 		// 新建两个数组：temp用来存储结果数据，arr用来模拟栈。
 		int* temp = new int[T.size()];
@@ -585,7 +586,7 @@ public:
 		int* arr = new int[T.size()];
 
 		// 先将arr的第一个值设置为0
-		arr[0] = 0; 
+		arr[0] = 0;
 		int flag = 0;
 		// 对原vector进行遍历
 		for (int i = 1, j = 0; (i < T.size() && j < T.size()); i++)
@@ -596,7 +597,7 @@ public:
 				arr[j] = i;
 				// 循环需要设置
 				flag = j - 1;
-				while (flag>=0&&T[arr[j]]>T[arr[flag]])
+				while (flag >= 0 && T[arr[j]] > T[arr[flag]])
 				{
 					temp[arr[flag]] = arr[j] - arr[flag];
 					arr[flag] = i;
@@ -614,7 +615,7 @@ public:
 		{
 			resvec.push_back(temp[i]);
 		}
-		delete []arr;
+		delete[]arr;
 		delete[] temp;
 		return resvec;
 	}
@@ -630,8 +631,9 @@ public:
 		}
 		// 输入有效，进行中序遍历(Inorder Traversal)
 
-		
+
 	}
+#pragma endregion
 	
 	//solu 239
 	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -792,7 +794,60 @@ public:
 		
 	}
 
+	//solu 147 -- 对链表进行插入排序
 
+	ListNode* insertionSortList(ListNode* head)
+	{
+		if (!head)
+			return nullptr;
+		if (!head->next)
+			return head;
+
+		ListNode* begin = head;
+		// 主体循环
+		for (ListNode* end = head, *move = end->next; end->next != nullptr;)
+		{
+			if (move->val >= end->val)
+			{
+				end = end->next;
+				move = end->next;
+				continue;
+			}
+			else
+			{
+				// 判断move是否到达尾节点
+				(!move->next) ? (end->next = nullptr) : (end->next = move->next);
+				// 进行前面的链表的遍历
+				ListNode* vbegin = nullptr;
+				ListNode* beginbackup = begin;
+				// 这个遍历的范围是[begin,end]，设置两个指针，vbgein,begin
+				for (vbegin, begin; begin != end->next; vbegin = begin, begin = begin->next)
+				{
+					// 寻找第一个大于move->val的节点
+					if (begin->val > move->val)
+					{
+						if (!vbegin)
+						{
+							move->next = begin;
+							break;
+						}
+						else
+						{
+							move->next = begin;
+							vbegin->next = move;
+							break;
+						}
+					}
+				}
+				// 循环结束，按照vbegin的值，重新设置begin/vbegin/move的值
+				// vb值不为空，说明发生了中间插入
+				(!vbegin) ? (begin = move) : (begin = beginbackup);
+				vbegin = nullptr;
+				move = end->next;
+			}
+		}
+		return begin;
+	}
 };
 
 #endif // !LEET_H_
