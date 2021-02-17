@@ -1,6 +1,6 @@
-#include"Leet.h"
-#include"Lint.h"
-#include"AlgorithmsTemplate.h"
+#include "Leet.h"
+#include "Lint.h"
+#include "AlgorithmsTemplate.h"
 
 /*
 #pragma region ReWrite
@@ -48,7 +48,8 @@ void insectionsort(T(&arr)[size])
 */
 int main()
 {
-	LeetSolution LeetSolu;
+	LeetSolution* leet = new LeetSolution();
+	AuxiliaryUtility* aux = new AuxiliaryUtility();
 
 	ListNode l1(5);
 	ListNode l2(6);
@@ -69,10 +70,10 @@ int main()
 	ListNode* head = &l1;
 
 	cout << "before sort : \n";
-	outputlist(head);
+	aux->outputList(head);
 	cout << "\nafter sorted : \n";
-	ListNode* newlist = LeetSolu.insertionSortList(head);
-	outputlist(newlist);
+	ListNode* newlist = leet->insertionSortList(head);
+	aux->outputList(newlist);
 
 	return 0;
 }

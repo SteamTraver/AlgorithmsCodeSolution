@@ -1,20 +1,5 @@
 #pragma once
-#ifndef ALGORITHMSTEMPLATE_H_
-#define ALGORITHMSTEMPLATE_H_
-
-#include<algorithm>
-#include<vector>
-#include<stack>
-#include<xutility>
-#include<memory>
-
-using std::vector;
-using std::max;
-using std::swap;
-using std::begin;
-using std::end;
-using std::stack;
-
+#include "common.h"
 // 常用的排序算法实现:
 namespace BaseAlgorithms
 {
@@ -108,10 +93,4 @@ public:
 		}
 	}
 #pragma endregion
-
-
-
 };
-
-
-#endif // !ALGORITHMSTEMPLATE_H_
