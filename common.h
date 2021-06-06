@@ -1,16 +1,16 @@
 #pragma once
-#include<iostream>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<stack>
-#include<queue>
-#include<deque>
-#include<array>
-#include<numeric>
-#include<xutility>
-#include<bitset>
-#include<memory>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <stack>
+#include <queue>
+#include <deque>
+#include <array>
+#include <numeric>
+#include <xutility>
+#include <bitset>
+#include <memory>
 
 using namespace std;
 

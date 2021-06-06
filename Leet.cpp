@@ -176,7 +176,7 @@ string LeetSolution::convert(string s, int numRows)
     if (numRows <= 1 || numRows > length)
         return s;
 
-    unsigned int* temp_arr = new unsigned int[length];
+    size_t* temp_arr = new size_t[length];
 
     // may not need to fill temp_arr
     for (size_t i = 0; i < length; i++)
