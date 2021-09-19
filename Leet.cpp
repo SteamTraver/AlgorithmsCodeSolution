@@ -28,16 +28,19 @@ ListNode* LeetSolution::addTwoNumbers(ListNode* l1, ListNode* l2)
         if (tmp >= 9) {
             if (carry) {
                 result->next = new ListNode(tmp - 9);
-            } else {
+            }
+            else {
                 result->next = new ListNode(tmp - 10);
             }
             result = result->next;
             carry = true;
-        } else {
+        }
+        else {
             if (carry) {
                 result->next = new ListNode(tmp + 1);
                 carry = false;
-            } else {
+            }
+            else {
                 result->next = new ListNode(tmp);
             }
             result = result->next;
@@ -106,13 +109,15 @@ inline double LeetSolution::findMedianTwoArrays(const vector<int>& nums1, const 
     for (auto it1 = nums1.begin(), it2 = nums2.begin(); (it1 != nums1.end() || it2 != nums2.end());) {
         if (it1 != nums1.end() && it2 != nums2.end()) {
             (*it1 <= *it2) ? (save.push_back(*it1), it1++) : (save.push_back(*it2), it2++);
-        } else {
+        }
+        else {
             if (it1 == nums1.end()) {
                 while (it2 != nums2.end()) {
                     save.push_back(*it2);
                     it2++;
                 }
-            } else {
+            }
+            else {
                 while (it1 != nums1.end()) {
                     save.push_back(*it1);
                     it1++;
@@ -130,9 +135,10 @@ inline double LeetSolution::findMedian(const vector<int>& v)
         return double(v[0]);
     }
     //奇为真
-    if (s % 2){
+    if (s % 2) {
         return double(v[s / 2]);
-    } else {
+    }
+    else {
         return (double(v[s / 2]) + double(v[s / 2 /*-1*/])) / 2;//may wrong
     }
 }
@@ -169,18 +175,15 @@ SNode* LeetSolution::reverselist(SNode* phead)
 
 string LeetSolution::convert(string s, int numRows)
 {
-    size_t length = s.size();
+    const size_t length = s.size();
     if (!length)
         return s;
     // numRows等于length的时候，返回原s，大于s的时候，返回什么？
     if (numRows <= 1 || numRows > length)
         return s;
 
-    size_t* temp_arr = new size_t[length];
-
-    // may not need to fill temp_arr
-    for (size_t i = 0; i < length; i++)
-        temp_arr[i] = 0;
+    unsigned int* temp_arr = new unsigned int[length];
+    memset(temp_arr, 0, length);
 
     // cost little space
 
@@ -195,7 +198,7 @@ string LeetSolution::convert(string s, int numRows)
     // process:
     // 需要两个循环，外层循环对 (i=0;i<numRows;i++)进行循环；
     // 内层循环填入数据，被填入的temp_arr的索引位置实时更新。
-    for (size_t i = 0; i < numRows; i++) {
+    for (unsigned int i = 0; i < numRows; i++) {
         unsigned int arr[] = { delta - (i * 2) , delta - (delta - (i * 2)) };
 
         unsigned int backup = i;
@@ -210,7 +213,8 @@ string LeetSolution::convert(string s, int numRows)
                 if (!arr[pick]) {
                     pick = (pick) ? 0 : 1;
                     continue;
-                } else {
+                }
+                else {
                     i = value;
                     index++;
                     temp_arr[index] = i;
@@ -224,7 +228,7 @@ string LeetSolution::convert(string s, int numRows)
     }
 
     string result = "";
-    for (size_t i = 0; i < length; i++) {
+    for (int i = 0; i < static_cast<int>(length); i++) {
         result += s[temp_arr[i]];
     }
     return result;
@@ -281,7 +285,8 @@ bool LeetSolution::isValid(string s)
                 char_arr[i] == '{' && s[t] == '}') {
                 char_arr[i] = '\0';
                 (i > 0) ? (j = i, i--) : 0;
-            } else {
+            }
+            else {
                 char_arr[j] = s[t];
                 i = j;
                 j++;
@@ -458,7 +463,8 @@ int LeetSolution::kthSmallest(TreeNode* root, int k)
     // 首先对输入进行有效性判断。
     if (!root || k < 0) {
         return EXIT_SUCCESS;
-    } else {
+    }
+    else {
         return EXIT_FAILURE;
     }
     // 输入有效，进行中序遍历(Inorder Traversal)
@@ -495,7 +501,8 @@ vector<int> LeetSolution::dailyTemperatures(vector<int>& T)
                 j = flag;
                 flag--;
             }
-        } else {
+        }
+        else {
             arr[++j] = i;
         }
     }
@@ -674,7 +681,8 @@ ListNode* LeetSolution::insertionSortList(ListNode* head)
             end = end->next;
             move = end->next;
             continue;
-        } else {
+        }
+        else {
             // 判断move是否到达尾节点
             (!move->next) ? (end->next = nullptr) : (end->next = move->next);
             // 进行前面的链表的遍历
@@ -687,7 +695,8 @@ ListNode* LeetSolution::insertionSortList(ListNode* head)
                     if (!vbegin) {
                         move->next = begin;
                         break;
-                    } else {
+                    }
+                    else {
                         move->next = begin;
                         vbegin->next = move;
                         break;

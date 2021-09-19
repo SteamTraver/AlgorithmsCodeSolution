@@ -4,7 +4,8 @@ double LintSolution::largestSumOfAverages(vector<int>& A, int k)
 {
     if (k == 1 && !A.empty()) {
         return (std::accumulate(A.begin(), A.end(), 0) / A.size());
-    } else {
+    }
+    else {
         return 0;
     }
 }
