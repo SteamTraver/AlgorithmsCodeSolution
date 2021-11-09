@@ -46,11 +46,11 @@ struct ListNode
     }
 };
 
-// 辅助类，集中定义相关辅助函数
-class AuxiliaryUtility
+// 辅助类，集中定义ListNode相关辅助函数
+class ListNodeUtility
 {
 public:
-    AuxiliaryUtility() {};
+    ListNodeUtility() {};
 
     // 链表输出
     static void outputList(const ListNode* head);

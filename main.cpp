@@ -46,36 +46,72 @@ void insectionsort(T(&arr)[size])
 #pragma endregion
 
 */
+
+//using BigInt = unsigned long long;
+//
+//BigInt evenOperation(BigInt number) {
+//    return number / 2;
+//}
+//
+//BigInt oddOperation(BigInt number) {
+//    return number * 3 + 1;
+//}
+
 int main()
 {
-    LeetSolution leet;
+    //LeetSolution leet;
+    //initializer_list<int> list_args = { 5,6,9,4,3,7,8,10,5,95,61,21 };
+    //ListNode* head = ListNodeUtility::generateList(list_args);
 
-    initializer_list<int> list_args = { 5,6,9,4,3,7,8,10,5,95,61,21 };
+    //cout << "before sort : \n";
+    //ListNodeUtility::outputList(head);
+    //cout << "\nafter sorted : \n";
+    //ListNode* newlist = leet.insertionSortList(head);
+    //ListNodeUtility::outputList(newlist);
+
+    //delete newlist;
+
+    //cout << "Input any positive number(integer) you think." << endl;
+    //BigInt number = 0;
+    //cin >> number;
+
+    //cout << "number your input is : " << number << std::endl;
+    //cout << "max of BigInt is : " << std::numeric_limits<unsigned long long>::max();
+    //while (true)
+    //{
+    //    if (number % 2 == 0) {
+    //        number = evenOperation(number);
+    //    }
+    //    else {
+    //        number = oddOperation(number);
+    //    }
+    //    cout << "\nnumber is " << number << endl;
+    //    if (number == 1) {
+    //        break;
+    //    }
+    //}
+    //return 0;
 
 
-    //ListNode<int> l1(5);
-    //ListNode<int> l2(6);
-    //ListNode<int> l3(9);
-    //ListNode<int> l4(4);
-    //ListNode<int> l5(3);
-    //ListNode<int> l6(7);
-    //ListNode<int> l7(8);
+    double square_number = 0.0;
+    cout << "Input a square number (>=0)\n";
+    cin >> square_number;
+    if (square_number < 0) {
+        cout << "Invalid square number, no square root of < 0.\n";
+        return EXIT_SUCCESS;
+    }
 
+    double guess = 1.0;
+    double quotient = 0.0;
 
-    //l1.link(&l2)->link(&l3)->link(&l4)->link(&l5)->link(&l6)->link(&l7);
+    while (std::abs(guess* guess - square_number) > 0.001)
+    {
+        quotient = square_number / guess;
+        guess = (quotient + guess) / 2;
+    }
 
-    //ListNode<int>* head = &l1;
-
-    ListNode* head = AuxiliaryUtility::generateList(list_args);
-
-    cout << "before sort : \n";
-    AuxiliaryUtility::outputList(head);
-    cout << "\nafter sorted : \n";
-    ListNode* newlist = leet.insertionSortList(head);
-    AuxiliaryUtility::outputList(newlist);
-
-    delete newlist;
-
-    return 0;
+    cout << "sqaure root of " << square_number << " is : " << guess
+        << endl;
+    return EXIT_SUCCESS;
 }
 

@@ -1,5 +1,5 @@
 #include "common.h"
-void AuxiliaryUtility::outputList(const ListNode* head)
+void ListNodeUtility::outputList(const ListNode* head)
 {
     if (!head) {
         cout << "Empty List, Return. \n";
@@ -14,10 +14,9 @@ void AuxiliaryUtility::outputList(const ListNode* head)
     }
 }
 
-ListNode* AuxiliaryUtility::generateList(const std::initializer_list<int>& list_args)
+ListNode* ListNodeUtility::generateList(const std::initializer_list<int>& list_args)
 {
-    const auto size = list_args.size();
-    if (size == 0){
+    if (list_args.size() == 0){
         return nullptr;
     }
     auto begin = list_args.begin();

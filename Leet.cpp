@@ -58,13 +58,12 @@ int LeetSolution::lengthOfLongestSubstring(string s)
     if (s.empty() || s.size() == 1) {
         return (s.empty()) ? 0 : 1;
     }
-    size_t n = s.length(), ans = 0;
+    int ans = 0;
     const int max_size = 128;
-    size_t* index = new size_t[max_size];
+    int* index = new int[max_size];
+    memset(index, 0, max_size * sizeof(int));
 
-    memset(index, 0, max_size * sizeof(size_t));
-
-    for (size_t j = 0, i = 0; j < n; j++) {
+    for (int j = 0, i = 0; j < s.length(); j++) {
         // i的更新过程：
         // 只有当前字符不重复且上一次也不重复时，i一直是0。
         // 假如重复，返回flag值;
